@@ -3,7 +3,8 @@
  */
 import { Shoupai } from './model'
 import { Suanpai } from './suanpai'
-import { utilXiangting, utilTingpai } from './util/xiangting'
+import { utilXiangting } from './util/xiangting'
+import { utilTingpai } from './util/tingpai'
 import { utilHule } from './util/hule'
 
 export const Player = function(id) {

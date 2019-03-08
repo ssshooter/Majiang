@@ -1,7 +1,7 @@
 // 功能函数 检测向听数 多处用到
 
 /*
- *  Majiang.Util.xiangting
+ *  xiangting
  */
 
 function _xiangting(m, d, g, j) {
@@ -156,7 +156,7 @@ function xiangting_qiduizi(shoupai) {
   return 13 - n_duizi * 2 - n_danqi
 }
 
-const $xiangting = function(shoupai) {
+export const utilXiangting = function(shoupai) {
   var min_xiangting = xiangting_yiban(shoupai)
 
   if (shoupai._fulou.length == 0) {
@@ -168,27 +168,4 @@ const $xiangting = function(shoupai) {
   }
 
   return min_xiangting
-}
-
-export const utilXiangting = $xiangting
-
-export const utilTingpai = function(shoupai, xiangting) {
-  var pai = []
-
-  if (shoupai._zimo) return pai
-
-  xiangting = xiangting || $xiangting
-
-  var n_xiangting = xiangting(shoupai)
-  for (var s of ['m', 'p', 's', 'z']) {
-    var bingpai = shoupai._bingpai[s]
-    for (var n = 1; n < bingpai.length; n++) {
-      if (bingpai[n] >= 4) continue
-      bingpai[n]++
-      if (xiangting(shoupai) < n_xiangting) pai.push(s + n)
-      bingpai[n]--
-    }
-  }
-
-  return pai
 }

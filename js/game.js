@@ -1,12 +1,14 @@
 /*
  *  Game
  */
-// import { view } from "./view";
 import { He, Shan, Shoupai } from './model'
 import { Player } from './player'
 import { UI } from './ui'
+import ViewObj from './view'
+import AudioObj from './audio'
+import { utilXiangting } from './util/xiangting'
+import { utilTingpai } from './util/tingpai'
 import { utilHule } from './util/hule'
-import { utilXiangting, utilTingpai } from './util/xiangting'
 
 export const Game = function() {
   this._speed = 3
@@ -359,7 +361,7 @@ Game.prototype.reply_jieju = function() {
 
 Game.prototype.say = function(name, lunban) {
   this.audio_play(name, lunban)
-  Majiang.View.Say.play(
+  ViewObj.Say.play(
     name,
     this.player_id(lunban == null ? this._lunban : lunban)
   )
@@ -367,7 +369,7 @@ Game.prototype.say = function(name, lunban) {
 
 Game.prototype.audio_play = function(name, lunban) {
   if (this._speed == 0) return
-  Majiang.Audio.play(
+  AudioObj.play(
     name,
     this.player_id(lunban == null ? this._lunban : lunban)
   )
@@ -383,10 +385,10 @@ Game.prototype.create_view = function(viewpoint) {
   viewpoint = viewpoint || 0
 
   this._view = {
-    shan: new Majiang.View.Shan($('.chang .shan'), this._model.shan),
+    shan: new ViewObj.Shan($('.chang .shan'), this._model.shan),
     shoupai: [],
     he: [],
-    chang: new Majiang.View.Chang($('.chang'), this._chang, viewpoint),
+    chang: new ViewObj.Chang($('.chang'), this._chang, viewpoint),
   }
 
   this._view.chang.redraw()
@@ -395,27 +397,27 @@ Game.prototype.create_view = function(viewpoint) {
   var view_class = ['main', 'xiajia', 'duimian', 'shangjia']
   for (var l = 0; l < 4; l++) {
     var c = view_class[(this.player_id(l) + 4 - viewpoint) % 4]
-    this._view.shoupai[l] = new Majiang.View.Shoupai(
+    this._view.shoupai[l] = new ViewObj.Shoupai(
       $('.shoupai.' + c),
       this._model.shoupai[l],
       this.player_id(l) == viewpoint
     )
     this._view.shoupai[l].redraw()
 
-    this._view.he[l] = new Majiang.View.He($('.he.' + c), this._model.he[l])
+    this._view.he[l] = new ViewObj.He($('.he.' + c), this._model.he[l])
     this._view.he[l].redraw()
   }
 
-  Majiang.View.Say.init(viewpoint)
+  ViewObj.Say.init(viewpoint)
 
-  this._view.jiesuan = new Majiang.View.Jiesuan(
+  this._view.jiesuan = new ViewObj.Jiesuan(
     $('.jiesuan'),
     this._model.shan,
     this._chang,
     viewpoint
   )
 
-  new Majiang.View.Controler($('.controler'), this)
+  new ViewObj.Controler($('.controler'), this)
 }
 
 Game.prototype.qipai = function() {
@@ -567,8 +569,6 @@ Game.prototype.dapai = function(dapai) {
 }
 
 Game.prototype.fulou = function(fulou) {
-  var self = this
-
   this._diyizimo = false
   this._yifa = [false, false, false, false]
   this._dapai = null
@@ -605,8 +605,6 @@ Game.prototype.fulou = function(fulou) {
 }
 
 Game.prototype.gang = function(gang) {
-  var self = this
-
   this._model.shoupai[this._lunban].gang(gang)
   this._view.shoupai[this._lunban].redraw()
 
@@ -624,8 +622,6 @@ Game.prototype.gang = function(gang) {
 }
 
 Game.prototype.gangzimo = function() {
-  var self = this
-
   this._diyizimo = false
   this._yifa = [false, false, false, false]
   this._dapai = null
@@ -672,8 +668,6 @@ Game.prototype.kaigang = function() {
 }
 
 Game.prototype.hule = function() {
-  var self = this
-
   this._no_game = false
 
   if (this._status != 'hule') {
@@ -941,7 +935,7 @@ Game.prototype.jieju = function() {
   this._paipu.rank = rank.concat()
   this._paipu.point = point.concat()
 
-  Majiang.View.Jiezhang($('.jiezhang'), this._paipu)
+  ViewObj.Jiezhang($('.jiezhang'), this._paipu)
 
   var data = []
   for (var l = 0; l < 4; l++) {

@@ -1,8 +1,11 @@
 import { VERSION } from './majiang'
-import {Game} from './game'
+import { Game } from './game'
+// import './paipu'
+import AudioObj from './audio'
+import { PaipuEditor } from './file'
 
 var game, paipu, editor
-window.Majiang = {}
+
 $(function() {
   $('.version').text('ver. ' + VERSION)
   $('#title .loading').text('Loading...')
@@ -34,11 +37,11 @@ $(function() {
     editor.start(game._paipu)
   }
 
-  editor = new Majiang.PaipuEditor('Majiang.game')
+  editor = new PaipuEditor('Majiang.game')
   $('#editor .next').on('click', start)
 
   $(window).load(function() {
-    Majiang.Audio.volume(1)
+    AudioObj.volume(1)
     clearInterval(id)
     setTimeout(function() {
       $('#title').hide()
