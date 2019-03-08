@@ -1,7 +1,7 @@
 /*
  *  Majiang.Game.Paipu
  */
-
+var paipu
 (function(){
 
 Majiang.Game.Paipu = function(paipu) {

@@ -6,4 +6,4 @@
  *  https://github.com/kobalab/Majiang/blob/master/LICENSE
  */
 
-var Majiang = { VERSION: '0.9.9' };
+export let VERSION = '0.9.9'

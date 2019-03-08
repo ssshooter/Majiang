@@ -1,0 +1,23 @@
+{
+  "name": "majiang",
+  "version": "1.0.0",
+  "description": "HTML5 + JavaScript で動作する麻雀アプリ「電脳麻将」",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssshooter/Majiang.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssshooter/Majiang/issues"
+  },
+  "homepage": "https://github.com/ssshooter/Majiang#readme",
+  "dependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
