@@ -9,6 +9,7 @@ import AudioObj from './audio'
 import { utilXiangting } from './util/xiangting'
 import { utilTingpai } from './util/tingpai'
 import { utilHule } from './util/hule'
+// import { Socket } from 'net';
 
 export const Game = function() {
   this._speed = 3
@@ -418,6 +419,7 @@ Game.prototype.create_view = function(viewpoint) {
   )
 
   new ViewObj.Controler($('.controler'), this)
+  // Socket.emit('Controler',this)
 }
 
 Game.prototype.qipai = function() {
@@ -531,8 +533,6 @@ Game.prototype.zimo = function() {
 }
 
 Game.prototype.dapai = function(dapai) {
-  var self = this
-
   this._yifa[this._lunban] = false
   this._fulou = null
 

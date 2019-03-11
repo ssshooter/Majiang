@@ -1,5 +1,5 @@
 /*
- *  UI
+ *  重点在操作
  */
 import { Player } from './player'
 

@@ -1,5 +1,4 @@
-// UI 操作
-
+// 重点在绘制
 /*
  *  View
  */
@@ -180,7 +179,7 @@ View.He.prototype.dapai = function(p) {
 }
 
 /*
- *  Majiang,View.Chang
+ *  Majiang,View.Chang 场
  */
 
 View.Chang = function(node, chang, viewpoint) {
@@ -459,7 +458,7 @@ View.Jiezhang = function(node, paipu) {
 /*
  *  View.Controler
  */
-
+// 推断：两个选项的控制器
 View.Controler = function(node, game) {
   this._node = node
   this._game = game
